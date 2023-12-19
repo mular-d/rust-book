@@ -33,7 +33,7 @@ fn main() {
 
     // let mut s = String::from("hello");
     // let r1 = &mut s;
-    // let r2 = &mut s; // cannot borrow mutable refrence more than one
+    // let r2 = &mut s; // cannot borrow mutable reference more than one
     // println!("{}, {}", r1, r2)
 
     // let mut s = String::from("hello");
@@ -50,6 +50,15 @@ fn main() {
     println!("{}", r3); // This works fine because the last usage of the immutable occurs before the mutable
 
     // let reference_to_nothing = dangle();
+
+    let mut s = String::from("hello world");
+    let word = first_word(&s); // word will get the value of 5
+    s.clear(); // this empties the String, making it equal to "" word still has the value 5 here, but it is invalid!
+
+    let mut s = String::from("hello world");
+    let word = first_word_slice_type(&s);
+    // s.clear(); // error!
+    println!("the first word is: {}", word);
 }
 
 // fn dangle() -> &String { // make the return type `String` to fix
@@ -72,4 +81,28 @@ fn takes_ownership(some_string: String) {
 
 fn makes_copy(some_integer: i32) {
     println!("{}", some_integer);
+}
+
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
+fn first_word_slice_type(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+       if item == b' ' {
+           return &s[0..i];
+       }
+    }
+
+    &s[..]
 }

@@ -13,9 +13,9 @@ fn main() {
 }
 
 fn fibonacci(input: i32) -> i32 {
-    if input <= 2 {
-        return 1;
+    return if input <= 2 {
+        1
     } else {
-        return fibonacci(input - 1) + fibonacci(input - 2);
+        fibonacci(input - 1) + fibonacci(input - 2)
     }
 }
