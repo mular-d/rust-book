@@ -42,33 +42,46 @@ fn main() {
 
     screen.run();
 
-    println!("============================================");
+    // println!("============================================");
+    //
+    // let mut post = Post::new();
+    //
+    // post.add_text("I ate a salad for lunch today");
+    // assert_eq!("", post.content());
+    //
+    // post.request_review();
+    // assert_eq!("", post.content());
+    //
+    // post.approve();
+    // assert_eq!("I ate a salad for lunch today", post.content());
+    //
+    // println!("============================================");
+    //
+    // let mut post = Post::new();
+    //
+    // post.add_text("Some other post for today");
+    // assert_eq!("", post.content());
+    //
+    // post.request_review();
+    // assert_eq!("", post.content());
+    //
+    // post.reject();
+    // assert_eq!("", post.content());
+    //
+    // post.request_review();
+    // post.approve();
+    // assert_eq!("Some other post for today", post.content());
+    //
 
     let mut post = Post::new();
 
     post.add_text("I ate a salad for lunch today");
-    assert_eq!("", post.content());
 
-    post.request_review();
-    assert_eq!("", post.content());
+    let post = post.request_review();
 
-    post.approve();
+    // let post = post.reject();
+
+    let post = post.approve();
+
     assert_eq!("I ate a salad for lunch today", post.content());
-
-    println!("============================================");
-
-    let mut post = Post::new();
-
-    post.add_text("Some other post for today");
-    assert_eq!("", post.content());
-
-    post.request_review();
-    assert_eq!("", post.content());
-
-    post.reject();
-    assert_eq!("", post.content());
-
-    post.request_review();
-    post.approve();
-    assert_eq!("Some other post for today", post.content());
 }
