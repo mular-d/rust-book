@@ -149,6 +149,27 @@ fn main() {
 
     let w = Wrapper(vec![String::from("hello"), String::from("world")]);
     println!("w = {}", w);
+
+    type Kilometers = i32;
+
+    let x: i32 = 5;
+    let y: Kilometers = 5;
+
+    println!("x + y = {}", x + y);
+
+    let answer = do_twice(add_one, 5);
+    println!("The answer is: {}", answer);
+
+    let list_of_numbers = vec![1, 2, 3];
+    let _list_of_strings: Vec<String> = list_of_numbers.iter().map(|i| i.to_string()).collect();
+}
+
+fn add_one(x: i32) -> i32 {
+    x + 1
+}
+
+fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
+    f(arg) + f(arg)
 }
 
 unsafe trait Foo {
